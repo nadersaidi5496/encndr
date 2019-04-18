@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+    <span>Ajouter Encadrant</span>
+    <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
+</mat-toolbar>
+      
+    <form [formGroup]="myForm" class="normal-form">
+      <div class="controles-container">
+          <mat-form-field>
+              <input matInput placeholder="Nom" formControlName="Nom">
+              <mat-error *ngIf="Nom.invalid && Nom.touched">
+                verifier le nom
+              </mat-error>
+            </mat-form-field>
+          
+            <mat-form-field>
+                <input matInput placeholder="Prenom" formControlName="Prenom">
+                <mat-error *ngIf="Prenom.invalid && Prenom.touched">
+                  verifier le Prenom
+                </mat-error>
+              </mat-form-field>  
+          
+              <mat-form-field>
+                  <input matInput placeholder="Numero de telephone" formControlName="Tlf">
+                  <mat-error *ngIf="Tlf.invalid  && Tlf.touched">
+                    le numero est incorrect
+                  </mat-error>
+                </mat-form-field>  
+          
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="Email">
+                    <mat-error *ngIf="Email.invalid && Email.touched">
+                      verifier la format de l'email
+                    </mat-error>
+                  </mat-form-field>  
+          
+                  <mat-form-field>
+                      <mat-select placeholder="Grade" formControlName="Grade">
+                        <mat-option *ngFor="let grade of grades" [value]="grade">
+                        {{grade}}
+                        </mat-option>
+                  </mat-select>
+                    <mat-error *ngIf="Grade.invalid  && Grade.touched">
+                       il faut specifier le grade
+                    </mat-error>
+                  </mat-form-field>
+                  <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Valider</button>
+      </div>  
+    </form>

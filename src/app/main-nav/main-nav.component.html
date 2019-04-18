@@ -1,0 +1,54 @@
+<mat-toolbar id="mainToolbar" color="primary">
+  <button  (click)="onToolbarMenuToogle()" id="toolbarMenu" mat-button><mat-icon>subject</mat-icon></button>
+Encadrement
+</mat-toolbar>
+
+<mat-sidenav-container color="primary"
+  id="sidenavContainer"
+ fullscreen>
+  <mat-sidenav color="primary"
+    mode="side"
+    #sidenav
+    id="sidenav"
+    [class.menu-open]="isMenuOpen"
+    [class.menu-close]="!isMenuOpen"
+    opened>
+    
+    <mat-list id="menus">
+      <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar src="assets/img/logo/isg.jpg" alt="isgLogo">
+            <mat-card-title>{{name}}</mat-card-title>
+            <mat-card-subtitle>{{statut}}</mat-card-subtitle>
+        </mat-card-header>
+      </mat-card>
+      <mat-list-item>
+        <button 
+        class="menu-item"
+          mat-flat-button routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon>&nbsp;Dashboard</button>
+      </mat-list-item>
+
+      <mat-list-item>
+          <button 
+          class="menu-item"
+            mat-flat-button routerLink="/etudiants" routerLinkActive="active">
+            &nbsp;<img mat-card-avatar src="assets/img/logo/student.png">&nbsp;&nbsp;&nbsp;&nbsp;Etudiant</button>
+      </mat-list-item>
+      
+      <mat-list-item>
+        <button 
+        class="menu-item"
+          mat-flat-button routerLink="/encadrants" routerLinkActive="active">
+          &nbsp;<img mat-card-avatar src="assets/img/logo/professor.png">&nbsp;&nbsp;&nbsp;&nbsp;Encadrant</button>
+        </mat-list-item>
+
+    </mat-list>
+
+
+  </mat-sidenav>
+  <mat-sidenav-content
+  [ngStyle]="{ 'margin-left.px': contentMargin }"
+  ><router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

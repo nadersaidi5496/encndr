@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <span>Ajouter Etudiant</span>
+    <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
+</mat-toolbar>
+      
+<mat-horizontal-stepper #stepper>
+    <mat-step label="information personnel">
+    <div>
+        <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
+    </div>    
+    </mat-step>
+    <mat-step label="sujet">
+      Content 2
+      <div>
+        <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
+        <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
+      </div>
+    </mat-step>
+    <mat-step label="organisme d'acceuil">
+        Content 2
+        <div>
+        <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
+        <button mat-raised-button style="float : right; margin-left: 2px;" color="warn" (click)="stepper.reset()"><mat-icon>loop</mat-icon>Réinialiser</button>
+        <button mat-raised-button style="float : right;" color="primary"><mat-icon>check_circle_outline</mat-icon>Valider</button>
+        </div>
+      </mat-step>
+  </mat-horizontal-stepper>

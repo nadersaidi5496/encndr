@@ -1,0 +1,130 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#toolbarMenu {
+    cursor: pointer;
+    margin-right: 20px;
+}
+#mainToolbar .toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+#mainToolbar .toolbar-icon {
+    cursor: pointer;
+    margin: 0 8px;
+}
+
+#sidenavContainer {
+    margin-top: 64px;
+}
+
+#sidenav {
+    width: 240px;
+}
+
+#sidenav.menu-close {
+    width: 70px
+}
+
+#sidenav.menu-open {
+    width: 240px
+}
+
+#sidenav .avatar {
+    background-image: url('http://i.pravatar.cc/300');
+    background-size: cover;
+}
+
+#sidenav .mat-list-item-content {
+    padding: 0;
+}
+
+#sidenav .menu-item {
+    width: 100%;
+    border-radius: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+#sidenav .menu-item:hover {
+  background: #eee;
+}
+#sidenav .menu-item mat-icon {
+    margin-right: 20px;
+    margin-left: 12px;
+}
+
+.dash-list h3 {
+    padding: 12px;
+}
+
+
+
+.confirm-dialog-container .mat-dialog-container {
+    border-radius: .25em .25em .4em .4em;
+    padding: 0px;
+}
+
+.confirm-dialog-container .content-container {
+    margin: 5px 5px 15px 5px;
+    color: #8f9cb5;
+    display: flex;
+}
+.confirm-dialog-container #close-icon{
+    margin-left: auto;
+    order: 2;
+    font-weight: bolder;
+}
+
+.confirm-dialog-container #close-icon:hover{
+    cursor: pointer;
+}
+
+.confirm-dialog-container #no-button{
+    height: 50px;
+    width: 50%;
+    background-color: #fc7169;
+    color: white;
+    border-radius: 0px;
+}
+
+.confirm-dialog-container #oui-button{
+    height: 50px;
+    width: 50%;
+    background-color: #b6bece;
+    color: white;
+    border-radius: 0px;
+}
+
+.confirm-dialog-container span.content-span{
+    padding: 35px 16px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.controles-container {
+    width: 90%;
+    padding: 5%;
+}
+
+.controles-container > * {
+    width: 90%;
+}
+
+
+/* notification */
+snack-bar-container.success {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+snack-bar-container.notification {
+    font-size: 18px !important;
+    font-weight: bold;
+}
