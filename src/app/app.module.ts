@@ -19,6 +19,8 @@ import { MatConfirmeDeleteComponent } from './mat-confirme-delete/mat-confirme-d
 import { EncadrantsComponent } from './encadrants/encadrants.component';
 import { EncadrantComponent } from './encadrants/encadrant/encadrant.component';
 import {MatSelectModule} from '@angular/material';
+import { SocietesComponent } from './societes/societes.component';
+import { SocieteComponent } from './societes/societe/societe.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import {MatSelectModule} from '@angular/material';
     DashboardComponent,
     MatConfirmeDeleteComponent,
     EncadrantsComponent,
-    EncadrantComponent
+    EncadrantComponent,
+    SocietesComponent,
+    SocieteComponent
   ],
   imports: [
     BrowserModule,
