@@ -49,7 +49,7 @@ export class EncadrantsComponent implements OnInit {
     modifier = false;
 
     /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-    displayedColumns = ['actions' , 'id', 'name'];
+    displayedColumns = [ 'actions', 'id', 'name'];
 
     ngOnInit() {
       this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
