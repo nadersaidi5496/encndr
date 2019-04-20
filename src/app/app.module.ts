@@ -16,11 +16,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatConfirmeDeleteComponent } from './mat-confirme-delete/mat-confirme-delete.component';
-import { EncadrantsComponent } from './encadrants/encadrants.component';
-import { EncadrantComponent } from './encadrants/encadrant/encadrant.component';
 import {MatSelectModule} from '@angular/material';
 import { SocietesComponent } from './societes/societes.component';
 import { SocieteComponent } from './societes/societe/societe.component';
+import { EnseignantsComponent } from './enseignants/enseignants.component';
+import { EnseignantComponent } from './enseignants/enseignant/enseignant.component';
 
 
 @NgModule({
@@ -31,10 +31,10 @@ import { SocieteComponent } from './societes/societe/societe.component';
     EtudiantComponent,
     DashboardComponent,
     MatConfirmeDeleteComponent,
-    EncadrantsComponent,
-    EncadrantComponent,
     SocietesComponent,
-    SocieteComponent
+    SocieteComponent,
+    EnseignantsComponent,
+    EnseignantComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +63,6 @@ import { SocieteComponent } from './societes/societe/societe.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent , EncadrantComponent]
+  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent]
 })
 export class AppModule { }

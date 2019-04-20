@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource , MatDialog , MatDialogConfig
 import { EtudiantComponent } from './etudiant/etudiant.component';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
+import { EtudiantService } from '../service/etudiant.service';
 export interface EtudiantsItem {
   name: string;
   id: number;
@@ -37,7 +38,7 @@ const EXAMPLE_DATA: EtudiantsItem[] = [
   styleUrls: ['./etudiants.component.css']
 })
 export class EtudiantsComponent implements OnInit {
-  constructor(private dialog: MatDialog,
+  constructor(private etdudiantService: EtudiantService,
               private dialogService: DialogService,
               private notif: NotificationService) {}
 
@@ -45,7 +46,6 @@ export class EtudiantsComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   dataSource: MatTableDataSource<any>;
   searchKey: string;
-  
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['actions' , 'id', 'name'];
@@ -66,7 +66,7 @@ export class EtudiantsComponent implements OnInit {
   }
 
   onCreate() {
-    this.dialogService.ajouterEtudiantDialog();
+    this.etdudiantService.ajouterEtudiantDialog();
   }
 
   onDelete() {
