@@ -66,12 +66,7 @@ export class EtudiantsComponent implements OnInit {
   }
 
   onCreate() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
-    dialogConfig.panelClass = 'confirm-dialog-container';
-    this.dialog.open(EtudiantComponent, dialogConfig);
+    this.dialogService.ajouterEtudiantDialog();
   }
 
   onDelete() {

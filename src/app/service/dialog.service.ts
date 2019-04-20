@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatConfirmeDeleteComponent } from '../mat-confirme-delete/mat-confirme-delete.component';
+import { EncadrantComponent } from '../encadrants/encadrant/encadrant.component';
+import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,5 +20,22 @@ export class DialogService {
         message: msg
       }
     });
+  }
+
+  AddTeacherDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    return this.dialog.open(EncadrantComponent, dialogConfig);
+  }
+
+  ajouterEtudiantDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    dialogConfig.panelClass = 'confirm-dialog-container';
+    this.dialog.open(EtudiantComponent, dialogConfig);
   }
 }

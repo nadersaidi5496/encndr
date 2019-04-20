@@ -64,13 +64,10 @@ export class EncadrantsComponent implements OnInit {
       this.dataSource.filter = this.searchKey.trim().toLowerCase();
     }
     onCreate() {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      dialogConfig.width = '40%';
-      this.dialog.open(EncadrantComponent, dialogConfig);
+      this.dialogService.AddTeacherDialog();
     }
 
+    //operation de suppression d'un element du tableau
     onDelete() {
       this.dialogService.openConfirmeDialog("Etes-vous sûr(e) de vouloir supprimer l'encadrant ?")
       .afterClosed().subscribe(res =>{
@@ -78,5 +75,8 @@ export class EncadrantsComponent implements OnInit {
           this.notif.success('encadrant supprimer avec succes');
         }
     });
-  }
+    }
+
+    //operation de modification
+    
 }

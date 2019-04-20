@@ -16,6 +16,7 @@ export class EncadrantComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
+      Id : [''],
       Nom : ['', Validators.required],
       Prenom : ['', Validators.required],
       Tlf : [null, [
@@ -29,6 +30,11 @@ export class EncadrantComponent implements OnInit {
       ]],
       Grade : ['', Validators.required]
     });
+  }
+
+  //getters and setters for form
+  get Id() {
+    return this.myForm.get('Id');
   }
   get Nom() {
     return this.myForm.get('Nom');
@@ -46,6 +52,7 @@ export class EncadrantComponent implements OnInit {
     return this.myForm.get('Grade');
   }
 
+  //fermeture de popup avec retour "false"
   CloseDialog() {
     this.dialogRef.close(false);
   }
