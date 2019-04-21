@@ -2,16 +2,15 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
-import { EnseignantService } from '../service/enseignant.service';
-import { Encadrant } from '../model/encadrant';
+import { Enseignant } from '../model/enseignant';
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: Encadrant[] = [
+const EXAMPLE_DATA: Enseignant[] = [
   {Id: 1, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 1},
-  {Id: 2, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 2},
-  {Id: 3, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 3},
-  {Id: 4, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 2},
-  {Id: 5, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 4}
+  {Id: 2, Nom: 'Laameri', Prenom: 'med ali', Tlf: 22959781, Email: 'mohamed@gmail.com', Grade: 2},
+  {Id: 3, Nom: 'Yakoudi', Prenom: 'Raslen', Tlf: 22959782, Email: 'raslenyakoudi@gmail.com', Grade: 3},
+  {Id: 4, Nom: 'Khelil', Prenom: 'Mahdi', Tlf: 58640834, Email: 'khelilMahdi@gmail.com', Grade: 2},
+  {Id: 5, Nom: 'Berssellou', Prenom: 'Mustapha', Tlf: 22959782, Email: 'mustaphaBersselou@gmail.com', Grade: 4}
 ];
 
 @Component({
@@ -68,5 +67,9 @@ onDelete() {
 // operation de modification
 onEdit(row) {
   this.dialogService.ModifierTeacher(row);
+}
+
+encadEtudiant(row) {
+  this.dialogService.ListEtudDialog(row);
 }
 }

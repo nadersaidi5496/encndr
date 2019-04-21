@@ -5,6 +5,7 @@ import { EnseignantComponent } from '../enseignants/enseignant/enseignant.compon
 import { EnseignantService } from './enseignant.service';
 import * as _ from 'lodash';
 import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
+import { ListEtudComponent } from '../enseignants/list-etud/list-etud.component';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,16 @@ export class DialogService {
     dialogConfig.width = '60%';
     dialogConfig.panelClass = 'confirm-dialog-container';
     this.dialog.open(EtudiantComponent, dialogConfig);
+  }
+
+  ListEtudDialog(row) {
+    this.service.myForm.setValue(row);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    dialogConfig.panelClass = 'confirm-dialog-container';
+    this.dialog.open(ListEtudComponent, dialogConfig);
   }
 
 

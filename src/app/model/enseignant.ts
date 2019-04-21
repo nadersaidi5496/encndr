@@ -1,4 +1,4 @@
-export class Encadrant {
+export class Enseignant {
     Id: number;
     Nom: String;
     Prenom: String;

@@ -22,6 +22,7 @@ import { SocieteComponent } from './societes/societe/societe.component';
 import { EnseignantsComponent } from './enseignants/enseignants.component';
 import { EnseignantComponent } from './enseignants/enseignant/enseignant.component';
 import { EnseignantService } from './service/enseignant.service';
+import { ListEtudComponent } from './enseignants/list-etud/list-etud.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { EnseignantService } from './service/enseignant.service';
     SocietesComponent,
     SocieteComponent,
     EnseignantsComponent,
-    EnseignantComponent
+    EnseignantComponent,
+    ListEtudComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,6 @@ import { EnseignantService } from './service/enseignant.service';
   ],
   providers: [EnseignantService],
   bootstrap: [AppComponent],
-  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent]
+  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent]
 })
 export class AppModule { }

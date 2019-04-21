@@ -13,12 +13,11 @@ table{
     justify-content: center;
     font-style: italic;
   }
-  
   .search-div{
     margin: 10px;
   }
   .search-form-field{
-    width: 60%;
+    width: 20%;
     margin-left: 10px;
     padding: 5px 10px;
     background-color: #f5f5f5;

@@ -11,36 +11,31 @@
 </div>
 <div class="mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" aria-label="Elements" matSort>
-  <!--Id Column -->
-  <!-- <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-    <td mat-cell *matCellDef="let row">{{row.id}}</td>
-  </ng-container> -->
-
-  <!-- Name Column -->
+ 
+  <!-- Nom Column -->
   <ng-container matColumnDef="Nom">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
-    <td mat-cell *matCellDef="let row">{{row.Nom}}</td>
+    <td mat-cell *matCellDef="let row" (click)="encadEtudiant(row)">{{row.Nom}}</td>
   </ng-container>     
   <!-- prenom Column -->
   <ng-container matColumnDef="Prenom">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</th>
-    <td mat-cell *matCellDef="let row">{{row.Prenom}}</td>
+    <td mat-cell *matCellDef="let row" (click)="encadEtudiant(row)">{{row.Prenom}}</td>
   </ng-container>     
-  <!-- Name Column -->
+  <!-- telephone Column -->
   <ng-container matColumnDef="Tlf">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Telephone</th>
-    <td mat-cell *matCellDef="let row">{{row.Tlf}}</td>
+    <td mat-cell *matCellDef="let row" (click)="encadEtudiant(row)">{{row.Tlf}}</td>
   </ng-container>     
-  <!-- Name Column -->
+  <!-- email Column -->
   <ng-container matColumnDef="Email">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-    <td mat-cell *matCellDef="let row">{{row.Email}}</td>
+    <td mat-cell *matCellDef="let row" (click)="encadEtudiant(row)">{{row.Email}}</td>
   </ng-container>     
-  <!-- Name Column -->
+  <!-- grade Column -->
   <ng-container matColumnDef="Grade">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
-    <td mat-cell *matCellDef="let row">{{grades[row.Grade-1].nom}}</td>
+    <td mat-cell *matCellDef="let row" (click)="encadEtudiant(row)">{{grades[row.Grade-1].nom}}</td>
   </ng-container>     
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
