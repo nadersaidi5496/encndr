@@ -13,7 +13,7 @@ export interface EtudiantData {
 }
 
 const EXAMPLE_DATA: EtudiantData[] = [
-  {Id: 1, fullName: 'Saidi Nader', CIN: '07985332' , Tlf: 22959782, Email: 'nadersaidi@gmail.com', Sujet: "analyse des données d'encadrement" , TypeMaster: 'Recherche'},
+  {Id: 1, fullName: 'Mustapha', CIN: '07985332' , Tlf: 22959782, Email: 'nadersaidi@gmail.com', Sujet: "analyse des données d'encadrement" , TypeMaster: 'Recherche'},
   {Id: 2, fullName: 'Saidi Nader', CIN: '07985332' , Tlf: 22959782, Email: 'nadersaidi@gmail.com', Sujet: "analyse des données d'encadrement" , TypeMaster: 'Professionnel'},
   {Id: 3, fullName: 'Saidi Nader', CIN: '07985332' , Tlf: 22959782, Email: 'nadersaidi@gmail.com', Sujet: "analyse des données d'encadrement" , TypeMaster: 'Recherche'},
   {Id: 4, fullName: 'Saidi Nader', CIN: '07985332' , Tlf: 22959782, Email: 'nadersaidi@gmail.com', Sujet: "analyse des données d'encadrement" , TypeMaster: 'Professionnel'},
@@ -25,7 +25,7 @@ const EXAMPLE_DATA: EtudiantData[] = [
   styleUrls: ['./list-etud.component.css']
 })
 export class ListEtudComponent implements OnInit {
-  searchKey: string;
+  searchKey = '';
 
   displayedColumns = [ 'fullName', 'CIN' , 'Email' , 'Tlf' , 'Sujet'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,10 +47,15 @@ export class ListEtudComponent implements OnInit {
 
   onSearchClear() {
     this.searchKey = '';
-    this.applyFilter();
+    this.applyFilter('');
     }
-    applyFilter() {
-    this.dataSource.filter = this.searchKey.trim().toLowerCase();
+    applyFilter(mot) {
+      if (!(this.searchKey === '')) {
+        this.dataSource.filter = this.searchKey.trim().toLowerCase();
+      } else {
+        this.dataSource.filter = mot.toLowerCase();
+
+      }
     }
 
 }

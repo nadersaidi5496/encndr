@@ -3,12 +3,13 @@
     <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
   <div class="search-div">
-    <!-- <mat-select placeholder="Type de master">
-          <mat-option [(ngModel)]="searchKey" (click)="applyFilter()">Recherche</mat-option>
-          <mat-option [(ngModel)]="searchKey" (click)="applyFilter()">Professionnel</mat-option>
-    </mat-select> -->
+    <mat-select placeholder="Type de master">
+          <mat-option><button mat-button (click)="onSearchClear()">aucun</button></mat-option>
+          <mat-option><button mat-button (click)="applyFilter('Recherche')">Recherche</button></mat-option>
+          <mat-option><button mat-button (click)="applyFilter('Professionnel')">Professionnel</button></mat-option>
+    </mat-select>
     <mat-form-field class="search-form-field">  
-      <input matInput [(ngModel)]="searchKey" placeholder="Recherche" autocomplete="off" (keyup)="applyFilter()">
+      <input matInput [(ngModel)]="searchKey" placeholder="Recherche" autocomplete="off" (keyup)="applyFilter('')">
          <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
          <mat-icon>close</mat-icon>
          </button>
