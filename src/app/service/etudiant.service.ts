@@ -7,14 +7,7 @@ import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
 })
 export class EtudiantService {
 
-  constructor(private dialog: MatDialog) { }
+  constructor() { }
 
-  ajouterEtudiantDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
-    dialogConfig.panelClass = 'confirm-dialog-container';
-    this.dialog.open(EtudiantComponent, dialogConfig);
-  }
+
 }

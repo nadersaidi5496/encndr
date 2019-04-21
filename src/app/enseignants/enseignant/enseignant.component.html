@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-  <span>Ajouter Encadrant</span>
+  <span>{{service.myForm.controls['Id'].value?"Modifier Enseignant":"Ajouter Enseignant"}}</span>
   <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
     
   <form [formGroup]="service.myForm" class="normal-form">
     <div class="controles-container">
-      <input type="hidden" formControlName="$key">
+      <input type="hidden" formControlName="Id">
         <mat-form-field>
             <input matInput placeholder="Nom" formControlName="Nom">
             <mat-error *ngIf="service.myForm.controls['Nom'].invalid && service.myForm.controls['Nom'].touched">

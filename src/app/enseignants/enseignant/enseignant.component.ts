@@ -44,12 +44,18 @@ export class EnseignantComponent implements OnInit {
 
   // fermeture de popup avec retour "false"
   CloseDialog() {
+    this.service.InitialForm();
     this.dialogRef.close(false);
   }
 
   OnSubmit() {
-    console.log(this.service.myForm.value);
-    this.notif.success('Enseignant est ajouté avec succès');
+    if (!this.service.myForm.controls['Id'].value) {
+      this.notif.success('Enseignant est ajouter avec succès');
+    } else {
+    this.notif.success('Enseignant est modifier avec succès');
+    this.CloseDialog();
+    }
     this.service.InitialForm();
   }
+
 }

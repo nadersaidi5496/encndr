@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { EnseignantComponent } from '../enseignants/enseignant/enseignant.component';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Injectable({
@@ -8,7 +6,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 })
 export class EnseignantService {
   myForm: FormGroup = new FormGroup({
-    $key: new FormControl(null),
+    Id: new FormControl(null),
     Nom : new FormControl('', Validators.required),
     Prenom : new FormControl('', Validators.required),
     Tlf : new FormControl(null, [
@@ -23,8 +21,7 @@ export class EnseignantService {
     Grade : new FormControl('', Validators.required)
   });
 
-  constructor(private dialog: MatDialog,
-              private fb: FormBuilder) { }
+  constructor() { }
 
     // getters and setters for form
     get Id() {
@@ -48,4 +45,6 @@ export class EnseignantService {
   InitialForm() {
     this.myForm.reset();
   }
+
+
 }

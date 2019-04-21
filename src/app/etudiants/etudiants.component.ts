@@ -1,9 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource , MatDialog , MatDialogConfig} from '@angular/material';
-import { EtudiantComponent } from './etudiant/etudiant.component';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
-import { EtudiantService } from '../service/etudiant.service';
 export interface EtudiantsItem {
   name: string;
   id: number;
@@ -38,8 +36,7 @@ const EXAMPLE_DATA: EtudiantsItem[] = [
   styleUrls: ['./etudiants.component.css']
 })
 export class EtudiantsComponent implements OnInit {
-  constructor(private etdudiantService: EtudiantService,
-              private dialogService: DialogService,
+  constructor(private dialogService: DialogService,
               private notif: NotificationService) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -66,7 +63,7 @@ export class EtudiantsComponent implements OnInit {
   }
 
   onCreate() {
-    this.etdudiantService.ajouterEtudiantDialog();
+    this.dialogService.ajouterEtudiantDialog();
   }
 
   onDelete() {

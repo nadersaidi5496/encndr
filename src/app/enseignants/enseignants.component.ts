@@ -66,5 +66,7 @@ onDelete() {
 }
 
 // operation de modification
-
+onEdit(row) {
+  this.dialogService.ModifierTeacher(row);
+}
 }
