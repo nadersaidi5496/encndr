@@ -21,6 +21,7 @@ import { SocietesComponent } from './societes/societes.component';
 import { SocieteComponent } from './societes/societe/societe.component';
 import { EnseignantsComponent } from './enseignants/enseignants.component';
 import { EnseignantComponent } from './enseignants/enseignant/enseignant.component';
+import { EnseignantService } from './service/enseignant.service';
 
 
 @NgModule({
@@ -61,7 +62,7 @@ import { EnseignantComponent } from './enseignants/enseignant/enseignant.compone
     MatSelectModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [EnseignantService],
   bootstrap: [AppComponent],
   entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent]
 })

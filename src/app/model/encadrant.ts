@@ -4,5 +4,5 @@ export class Encadrant {
     Prenom: String;
     Tlf: number;
     Email: String;
-    Grade: String;
+    Grade: number;
 }

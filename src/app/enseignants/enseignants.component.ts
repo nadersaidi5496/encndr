@@ -3,33 +3,15 @@ import { MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
 import { EnseignantService } from '../service/enseignant.service';
-export interface EncadrantsItem {
-  name: string;
-  id: number;
-}
+import { Encadrant } from '../model/encadrant';
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: EncadrantsItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+const EXAMPLE_DATA: Encadrant[] = [
+  {Id: 1, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 1},
+  {Id: 2, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 2},
+  {Id: 3, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 3},
+  {Id: 4, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 2},
+  {Id: 5, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 4}
 ];
 
 @Component({
@@ -38,8 +20,7 @@ const EXAMPLE_DATA: EncadrantsItem[] = [
   styleUrls: ['./enseignants.component.css']
 })
 export class EnseignantsComponent implements OnInit {
-  constructor(private enseignantService: EnseignantService,
-              private dialogService: DialogService,
+  constructor(private dialogService: DialogService,
               private notif: NotificationService) {}
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
@@ -47,9 +28,15 @@ dataSource: MatTableDataSource<any>;
 searchKey: string;
 ajouter = false;
 modifier = false;
+grades = [
+  {id: 1, nom: "Professeur de l'enseignement supérieur"},
+  {id: 2, nom: 'Maître de conférences'},
+  {id: 3, nom: 'Maître assistant'},
+  {id: 4, nom: 'Assistant'}
+  ];
 
 /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-displayedColumns = [ 'actions', 'id', 'name'];
+displayedColumns = [ 'actions', 'Nom' , 'Prenom' , 'Tlf', 'Email', 'Grade'];
 
 ngOnInit() {
 this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
@@ -63,14 +50,15 @@ this.applyFilter();
 applyFilter() {
 this.dataSource.filter = this.searchKey.trim().toLowerCase();
 }
+
 onCreate() {
-this.enseignantService.AddTeacherDialog();
+this.dialogService.AddTeacherDialog();
 }
 
 // operation de suppression d'un element du tableau
 onDelete() {
   this.dialogService.openConfirmeDialog("Etes-vous sûr(e) de vouloir supprimer l'encadrant ?")
-  .afterClosed().subscribe(res =>{
+  .afterClosed().subscribe(res => {
     if (res) {
       this.notif.success('encadrant supprimer avec succes');
     }

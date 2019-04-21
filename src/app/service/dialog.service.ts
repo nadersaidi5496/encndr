@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { MatConfirmeDeleteComponent } from '../mat-confirme-delete/mat-confirme-delete.component';
+import { EnseignantComponent } from '../enseignants/enseignant/enseignant.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,14 @@ export class DialogService {
         message: msg
       }
     });
+  }
+
+  AddTeacherDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    return this.dialog.open(EnseignantComponent, dialogConfig);
   }
 
 
