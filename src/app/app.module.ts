@@ -23,7 +23,9 @@ import { EnseignantsComponent } from './enseignants/enseignants.component';
 import { EnseignantComponent } from './enseignants/enseignant/enseignant.component';
 import { EnseignantService } from './service/enseignant.service';
 import { ListEtudComponent } from './enseignants/list-etud/list-etud.component';
-
+import { SoutenanceComponent } from './soutenance/soutenance.component';
+import {AccordionModule} from 'primeng/accordion';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ListEtudComponent } from './enseignants/list-etud/list-etud.component';
     SocieteComponent,
     EnseignantsComponent,
     EnseignantComponent,
-    ListEtudComponent
+    ListEtudComponent,
+    SoutenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,9 @@ import { ListEtudComponent } from './enseignants/list-etud/list-etud.component';
     MatDialogModule,
     MatStepperModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AccordionModule,
+    FullCalendarModule
   ],
   providers: [EnseignantService],
   bootstrap: [AppComponent],
