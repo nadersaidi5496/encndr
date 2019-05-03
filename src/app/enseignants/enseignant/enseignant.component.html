@@ -1,46 +1,46 @@
 <mat-toolbar color="primary">
-  <span>{{service.myForm.controls['Id'].value?"Modifier Enseignant":"Ajouter Enseignant"}}</span>
+  <span>{{service.myForm.controls['id'].value?"Modifier Enseignant":"Ajouter Enseignant"}}</span>
   <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
     
   <form [formGroup]="service.myForm" class="normal-form">
     <div class="controles-container">
-      <input type="hidden" formControlName="Id">
+      <input type="hidden" formControlName="id">
         <mat-form-field>
-            <input matInput placeholder="Nom" formControlName="Nom">
-            <mat-error *ngIf="service.myForm.controls['Nom'].invalid && service.myForm.controls['Nom'].touched">
+            <input matInput placeholder="Nom" formControlName="nom">
+            <mat-error *ngIf="service.myForm.controls['nom'].invalid && service.myForm.controls['nom'].touched">
               verifier le nom
             </mat-error>
           </mat-form-field>
         
           <mat-form-field>
-              <input matInput placeholder="Prenom" formControlName="Prenom">
-              <mat-error *ngIf="service.myForm.controls['Prenom'].invalid && service.myForm.controls['Prenom'].touched">
+              <input matInput placeholder="Prenom" formControlName="prenom">
+              <mat-error *ngIf="service.myForm.controls['prenom'].invalid && service.myForm.controls['prenom'].touched">
                 verifier le Prenom
               </mat-error>
             </mat-form-field>  
         
             <mat-form-field>
-                <input matInput placeholder="Numero de telephone" formControlName="Tlf">
-                <mat-error *ngIf="service.myForm.controls['Tlf'].invalid  && service.myForm.controls['Tlf'].touched">
+                <input matInput placeholder="Numero de telephone" formControlName="tlf">
+                <mat-error *ngIf="service.myForm.controls['tlf'].invalid  && service.myForm.controls['tlf'].touched">
                   le numero est incorrect
                 </mat-error>
               </mat-form-field>  
         
               <mat-form-field>
-                  <input matInput placeholder="Email" formControlName="Email">
-                  <mat-error *ngIf="service.myForm.controls['Email'].invalid && service.myForm.controls['Email'].touched">
+                  <input matInput placeholder="Email" formControlName="email">
+                  <mat-error *ngIf="service.myForm.controls['email'].invalid && service.myForm.controls['email'].touched">
                     verifier la format de l'email
                   </mat-error>
                 </mat-form-field>  
         
                 <mat-form-field>
-                    <mat-select placeholder="Grade" formControlName="Grade">
-                      <mat-option *ngFor="let grade of grades" [value]="grade.id">
+                    <mat-select placeholder="Grade" formControlName="grade">
+                      <mat-option *ngFor="let grade of grades" [value]="grade.nom">
                       {{grade.nom}}
                       </mat-option>
                 </mat-select>
-                  <mat-error *ngIf="service.myForm.controls['Grade'].invalid  && service.myForm.controls['Grade'].touched">
+                  <mat-error *ngIf="service.myForm.controls['grade'].invalid  && service.myForm.controls['grade'].touched">
                      il faut specifier le grade
                   </mat-error>
                 </mat-form-field>

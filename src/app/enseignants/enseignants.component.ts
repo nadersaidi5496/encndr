@@ -3,15 +3,9 @@ import { MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
 import { Enseignant } from '../model/enseignant';
+import { EnseignantService } from '../service/enseignant.service';
+import { Observable } from 'rxjs';
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: Enseignant[] = [
-  {Id: 1, Nom: 'Saidi', Prenom: 'nader', Tlf: 22959782, Email: 'nadersaidi@gmail.com', Grade: 1},
-  {Id: 2, Nom: 'Laameri', Prenom: 'med ali', Tlf: 22959781, Email: 'mohamed@gmail.com', Grade: 2},
-  {Id: 3, Nom: 'Yakoudi', Prenom: 'Raslen', Tlf: 22959782, Email: 'raslenyakoudi@gmail.com', Grade: 3},
-  {Id: 4, Nom: 'Khelil', Prenom: 'Mahdi', Tlf: 58640834, Email: 'khelilMahdi@gmail.com', Grade: 2},
-  {Id: 5, Nom: 'Berssellou', Prenom: 'Mustapha', Tlf: 22959782, Email: 'mustaphaBersselou@gmail.com', Grade: 4}
-];
 
 @Component({
   selector: 'app-enseignants',
@@ -19,29 +13,37 @@ const EXAMPLE_DATA: Enseignant[] = [
   styleUrls: ['./enseignants.component.css']
 })
 export class EnseignantsComponent implements OnInit {
-  constructor(private dialogService: DialogService,
-              private notif: NotificationService) {}
-@ViewChild(MatPaginator) paginator: MatPaginator;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-dataSource: MatTableDataSource<any>;
+dataSource: MatTableDataSource<Enseignant> = new MatTableDataSource();
 searchKey: string;
 ajouter = false;
 modifier = false;
-grades = [
-  {id: 1, nom: "Professeur de l'enseignement supérieur"},
-  {id: 2, nom: 'Maître de conférences'},
-  {id: 3, nom: 'Maître assistant'},
-  {id: 4, nom: 'Assistant'}
-  ];
+DATA: Enseignant[];
+  constructor(private dialogService: DialogService,
+              private notif: NotificationService,
+              private service: EnseignantService) {}
+
 
 /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
 displayedColumns = [ 'actions', 'Nom' , 'Prenom' , 'Tlf', 'Email', 'Grade'];
 
 ngOnInit() {
-this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
-this.dataSource.sort = this.sort;
-this.dataSource.paginator = this.paginator;
+  this.chargeData();
 }
+chargeData(){
+  this.service.getEnseignants()
+  .subscribe(res => {
+    this.DATA = res;
+    this.dataSource = new MatTableDataSource<Enseignant>(this.DATA);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  },
+  err => console.error(err)
+  );
+}
+
 onSearchClear() {
 this.searchKey = '';
 this.applyFilter();
@@ -70,6 +72,8 @@ onEdit(row) {
 }
 
 encadEtudiant(row) {
+  console.log(row);
+  
   this.dialogService.ListEtudDialog(row);
 }
 }

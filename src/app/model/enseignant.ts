@@ -1,8 +1,9 @@
 export class Enseignant {
-    Id: number;
-    Nom: String;
-    Prenom: String;
-    Tlf: number;
-    Email: String;
-    Grade: number;
+    id: number;
+    nom: string;
+    prenom: string;
+    tlf: string;
+    email: string;
+    password: string;
+    grade: string;
 }

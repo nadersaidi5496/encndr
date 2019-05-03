@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Enseignant } from '../model/enseignant';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnseignantService {
   myForm: FormGroup = new FormGroup({
-    Id: new FormControl(null),
-    Nom : new FormControl('', Validators.required),
-    Prenom : new FormControl('', Validators.required),
-    Tlf : new FormControl(null, [
+    id: new FormControl(null),
+    nom : new FormControl('', Validators.required),
+    prenom : new FormControl('', Validators.required),
+    tlf : new FormControl('', [
       Validators.required,
       Validators.maxLength(8),
-      Validators.minLength(8)
+      Validators.minLength(8),
+      Validators.pattern('[1-9]+[0-9]*')
     ]),
-    Email : new FormControl('', [
+    email : new FormControl('', [
       Validators.required,
       Validators.email
     ]),
-    Grade : new FormControl('', Validators.required)
+    password : new FormControl('', Validators.required),
+    grade : new FormControl('', Validators.required)
   });
 
-  constructor() { }
+  apiUrl = 'http://localhost:8080/';
+  constructor(private httpClient: HttpClient) { }
 
-    // getters and setters for form
+  // getters and setters for form
     get Id() {
       return this.myForm.get('Id');
     }
@@ -44,6 +50,10 @@ export class EnseignantService {
     }
   InitialForm() {
     this.myForm.reset();
+  }
+
+  public getEnseignants(): Observable<Enseignant[]> {
+    return this.httpClient.get<Enseignant[]>(this.apiUrl + 'enseignants');
   }
 
 

@@ -26,6 +26,9 @@ import { ListEtudComponent } from './enseignants/list-etud/list-etud.component';
 import { SoutenanceComponent } from './soutenance/soutenance.component';
 import {AccordionModule} from 'primeng/accordion';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { DialogService } from './service/dialog.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -67,9 +70,10 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatSelectModule,
     MatSnackBarModule,
     AccordionModule,
-    FullCalendarModule
+    FullCalendarModule,
+    HttpClientModule
   ],
-  providers: [EnseignantService],
+  providers: [EnseignantService, DialogService],
   bootstrap: [AppComponent],
   entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent]
 })
