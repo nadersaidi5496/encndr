@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Enseignant } from '../model/enseignant';
 import { Observable } from 'rxjs';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,8 @@ export class EnseignantService {
     return this.httpClient.delete(this.apiUrl + 'enseignants/' + id);
   }
 
+  public updateEnseignant(id: number,ens: Enseignant){
+    return this.httpClient.put(this.apiUrl + 'enseignants/' + id, ens);
+  }
 
 }
