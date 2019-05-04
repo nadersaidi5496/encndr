@@ -5,6 +5,8 @@ import { NotificationService } from '../service/notification.service';
 import { Enseignant } from '../model/enseignant';
 import { EnseignantService } from '../service/enseignant.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -32,7 +34,7 @@ displayedColumns = [ 'actions', 'Nom' , 'Prenom' , 'Tlf', 'Email', 'Grade'];
 ngOnInit() {
   this.chargeData();
 }
-chargeData(){
+public chargeData(){
   this.service.getEnseignants()
   .subscribe(res => {
     this.DATA = res;
@@ -53,27 +55,33 @@ this.dataSource.filter = this.searchKey.trim().toLowerCase();
 }
 
 onCreate() {
-this.dialogService.AddTeacherDialog();
+this.dialogService.AddTeacherDialog().afterClosed().subscribe(res =>{
+  this.chargeData();
+});
 }
 
 // operation de suppression d'un element du tableau
-onDelete() {
+onDelete(row) {
   this.dialogService.openConfirmeDialog("Etes-vous sûr(e) de vouloir supprimer l'encadrant ?")
   .afterClosed().subscribe(res => {
     if (res) {
-      this.notif.success('encadrant supprimer avec succes');
+      this.service.deleteEnseignant(row.id).subscribe(res=>{
+        this.notif.warn('encadrant supprimer avec succes');
+        this.chargeData();
+      });
     }
   });
 }
 
 // operation de modification
 onEdit(row) {
-  this.dialogService.ModifierTeacher(row);
+  this.dialogService.ModifierTeacher(row).afterClosed().subscribe(res =>{
+    this.chargeData();
+  });
 }
 
 encadEtudiant(row) {
   console.log(row);
-  
   this.dialogService.ListEtudDialog(row);
 }
 }

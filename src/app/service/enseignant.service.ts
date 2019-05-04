@@ -22,7 +22,7 @@ export class EnseignantService {
       Validators.required,
       Validators.email
     ]),
-    password : new FormControl('', Validators.required),
+    password : new FormControl(''),
     grade : new FormControl('', Validators.required)
   });
 
@@ -54,6 +54,14 @@ export class EnseignantService {
 
   public getEnseignants(): Observable<Enseignant[]> {
     return this.httpClient.get<Enseignant[]>(this.apiUrl + 'enseignants');
+  }
+
+  public addEnseignant(ens: Enseignant){
+    return this.httpClient.post(this.apiUrl + 'enseignants', ens);
+  }
+
+  public deleteEnseignant(id: number){
+    return this.httpClient.delete(this.apiUrl + 'enseignants/' + id);
   }
 
 

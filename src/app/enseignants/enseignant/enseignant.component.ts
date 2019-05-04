@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { NotificationService } from 'src/app/service/notification.service';
 import { EnseignantService } from 'src/app/service/enseignant.service';
+import { Enseignant } from 'src/app/model/enseignant';
 
 @Component({
   selector: 'app-enseignant',
@@ -12,6 +12,7 @@ import { EnseignantService } from 'src/app/service/enseignant.service';
 export class EnseignantComponent implements OnInit {
 
   // myForm: FormGroup;
+  enseignant: Enseignant;
   grades = [
     {id: 1, nom: "Professeur de l'enseignement supérieur"},
     {id: 2, nom: 'Maître de conférences'},
@@ -48,9 +49,22 @@ export class EnseignantComponent implements OnInit {
     this.dialogRef.close(false);
   }
 
+
+
   OnSubmit() {
-    if (!this.service.myForm.controls['Id'].value) {
-      this.notif.success('Enseignant est ajouter avec succès');
+    if (!this.service.myForm.controls['id'].value) {
+      this.enseignant = new Enseignant(
+        this.service.myForm.controls['nom'].value,
+        this.service.myForm.controls['prenom'].value,
+        this.service.myForm.controls['tlf'].value,
+        this.service.myForm.controls['email'].value,
+        this.service.myForm.controls['grade'].value
+      );
+      console.log(this.enseignant);
+      this.service.addEnseignant(this.enseignant).subscribe(result =>{
+        this.notif.success('Enseignant est ajouter avec succès');
+        this.CloseDialog();
+      });
     } else {
     this.notif.success('Enseignant est modifier avec succès');
     this.CloseDialog();
