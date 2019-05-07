@@ -19,6 +19,7 @@ export class EnseignantsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
 dataSource: MatTableDataSource<Enseignant> = new MatTableDataSource();
+
 searchKey: string;
 ajouter = false;
 modifier = false;
@@ -33,6 +34,8 @@ displayedColumns = [ 'actions', 'Nom' , 'Prenom' , 'Tlf', 'Email', 'Grade'];
 
 ngOnInit() {
   this.chargeData();
+  this.dataSource.sort = this.sort;
+  this.dataSource.paginator = this.paginator;
 }
 public chargeData(){
   this.service.getEnseignants()

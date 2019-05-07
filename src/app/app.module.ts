@@ -28,6 +28,8 @@ import {AccordionModule} from 'primeng/accordion';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { DialogService } from './service/dialog.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { HttpClientModule } from '@angular/common/http';
     EnseignantsComponent,
     EnseignantComponent,
     ListEtudComponent,
-    SoutenanceComponent
+    SoutenanceComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
