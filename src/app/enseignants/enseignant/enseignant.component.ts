@@ -24,21 +24,6 @@ export class EnseignantComponent implements OnInit {
               private service: EnseignantService) { }
 
   ngOnInit() {
-    // this.myForm = this.fb.group({
-    //   $key: [''],
-    //   Nom : ['', Validators.required],
-    //   Prenom : ['', Validators.required],
-    //   Tlf : [null, [
-    //     Validators.required,
-    //     Validators.maxLength(8),
-    //     Validators.minLength(8)
-    //   ]],
-    //   Email : ['', [
-    //     Validators.required,
-    //     Validators.email
-    //   ]],
-    //   Grade : ['', Validators.required]
-    // });
   }
 
 

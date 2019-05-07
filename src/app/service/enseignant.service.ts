@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Enseignant } from '../model/enseignant';
 import { Observable } from 'rxjs';
-import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'

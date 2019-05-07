@@ -6,6 +6,7 @@ import { EnseignantService } from './enseignant.service';
 import * as _ from 'lodash';
 import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
 import { ListEtudComponent } from '../enseignants/list-etud/list-etud.component';
+import { SocieteComponent } from '../societes/societe/societe.component';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,14 @@ export class DialogService {
     dialogConfig.width = '60%';
     dialogConfig.panelClass = 'confirm-dialog-container';
     this.dialog.open(ListEtudComponent, dialogConfig);
+  }
+
+  AddSocieteDialog(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    return this.dialog.open(SocieteComponent, dialogConfig);
   }
 
 
