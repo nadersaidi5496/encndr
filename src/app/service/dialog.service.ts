@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
 import { ListEtudComponent } from '../enseignants/list-etud/list-etud.component';
 import { SocieteComponent } from '../societes/societe/societe.component';
+import { SocietesService } from './societes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ import { SocieteComponent } from '../societes/societe/societe.component';
 export class DialogService {
 
   constructor(private dialog: MatDialog,
-              private service: EnseignantService) { }
+              private service: EnseignantService,
+              private _societe: SocietesService) { }
 
   openConfirmeDialog(msg) {
     return this.dialog.open(MatConfirmeDeleteComponent,{
@@ -69,8 +71,28 @@ export class DialogService {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '40%';
+    dialogConfig.width = '60%';
     return this.dialog.open(SocieteComponent, dialogConfig);
+  }
+
+  ModifierSociete(row) {
+    this._societe.myForm.setValue({
+      id: row.id,
+      nom : row.nom,
+      secteur : row.secteur,
+      ville : row.ville,
+      codePostale : row.codePostale,
+      adresse: row.adresse,
+      tlf : row.tlf,
+      email : row.email,
+      pays: row.pays.id
+    });
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '60%';
+    return this.dialog.open(SocieteComponent, dialogConfig);
+
   }
 
 

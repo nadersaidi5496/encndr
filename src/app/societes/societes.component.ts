@@ -13,7 +13,7 @@ import { SocietesService } from '../service/societes.service';
 export class SocietesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
-dataSource: MatTableDataSource<Societe> = new MatTableDataSource();
+dataSource: MatTableDataSource<Societe>;
 
 searchKey: string;
 ajouter = false;
@@ -25,16 +25,15 @@ DATA: Societe[];
 
 
 /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-displayedColumns = [ 'actions', 'Nom' ,'Secteur' , 'Adresse','CodePostale', 'Ville', 'Tlf', 'Email', 'Pays'];
+displayedColumns = [ 'actions', 'Nom' , 'Secteur' , 'Adresse', 'CodePostale', 'Ville', 'Tlf', 'Email', 'Pays'];
 
 ngOnInit() {
   this.chargeData();
-  this.dataSource.sort = this.sort;
-  this.dataSource.paginator = this.paginator;
 }
+
 public chargeData(){
-  this.service.getSocietes()
-  .subscribe(res => {
+   this.service.getSocietes()
+  .subscribe( res => {
     this.DATA = res;
     this.dataSource = new MatTableDataSource<Societe>(this.DATA);
     this.dataSource.sort = this.sort;
@@ -56,6 +55,7 @@ onCreate() {
 this.dialogService.AddSocieteDialog().afterClosed().subscribe(res =>{
   this.chargeData();
 });
+
 }
 
 // operation de suppression d'un element du tableau
@@ -73,13 +73,9 @@ onDelete(row) {
 
 // operation de modification
 onEdit(row) {
-  this.dialogService.ModifierTeacher(row).afterClosed().subscribe(res =>{
+  this.dialogService.ModifierSociete(row).afterClosed().subscribe(res =>{
     this.chargeData();
   });
 }
 
-encadEtudiant(row) {
-  console.log(row);
-  this.dialogService.ListEtudDialog(row);
-}
 }

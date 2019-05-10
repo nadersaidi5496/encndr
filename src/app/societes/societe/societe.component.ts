@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material';
 import { NotificationService } from 'src/app/service/notification.service';
 import { SocietesService } from 'src/app/service/societes.service';
 import { Societe } from 'src/app/model/societe';
+import { PaysService } from 'src/app/service/pays.service';
+import { Pays } from 'src/app/model/pays';
 
 @Component({
   selector: 'app-societe',
@@ -13,20 +15,22 @@ export class SocieteComponent implements OnInit {
 
 
   societe: Societe;
-  grades = [
-    {id: 1, nom: "Professeur de l'enseignement supérieur"},
-    {id: 2, nom: 'Maître de conférences'},
-    {id: 3, nom: 'Maître assistant'},
-    {id: 4, nom: 'Assistant'}
-    ];
+  Pays: Pays[];
+
   constructor(public dialogRef: MatDialogRef<SocieteComponent>,
               private notif: NotificationService,
-              private service: SocietesService) { }
+              private service: SocietesService,
+              private _Pays: PaysService) { }
 
   ngOnInit() {
+    this.chargePays();
   }
 
-
+  chargePays() {
+    this._Pays.getPays().subscribe(res =>{
+      this.Pays = res;
+    });
+  }
 
   // fermeture de popup avec retour "false"
   CloseDialog() {
@@ -35,27 +39,29 @@ export class SocieteComponent implements OnInit {
   }
 
 
-
   OnSubmit() {
-    this.societe = new Enseignant(
+    this.societe = new Societe(
       this.service.myForm.controls['id'].value,
       this.service.myForm.controls['nom'].value,
-      this.service.myForm.controls['prenom'].value,
+      this.service.myForm.controls['secteur'].value,
+      this.service.myForm.controls['ville'].value,
+      this.service.myForm.controls['codePostale'].value,
+      this.service.myForm.controls['adresse'].value,
       this.service.myForm.controls['tlf'].value,
       this.service.myForm.controls['email'].value,
-      this.service.myForm.controls['grade'].value,
-      this.service.myForm.controls['password'].value
+      this.Pays[this.service.myForm.controls['pays'].value-1]
     );
+    console.log(this.societe);
     if (!this.service.myForm.controls['id'].value) {
-      this.service.addEnseignant(this.enseignant).subscribe(result =>{
-        this.notif.success('Enseignant est ajouter avec succès');
+      this.service.addSociete(this.societe).subscribe(result =>{
+        this.notif.success('Société est ajouter avec succès');
         this.service.InitialForm();
         this.CloseDialog();
       });
     } else {
-      this.service.updateEnseignant(this.enseignant.id, this.enseignant).
+      this.service.updateSociete(this.societe.id, this.societe).
       subscribe(res => {
-        this.notif.success('Enseignant est modifier avec succès');
+        this.notif.success('Société est modifier avec succès');
         this.service.InitialForm();
         this.CloseDialog();
       });

@@ -30,6 +30,8 @@ import { DialogService } from './service/dialog.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { SocietesService } from './service/societes.service';
+import { PaysService } from './service/pays.service';
 
 
 @NgModule({
@@ -77,8 +79,8 @@ import { HomeComponent } from './home/home.component';
     FullCalendarModule,
     HttpClientModule
   ],
-  providers: [EnseignantService, DialogService],
+  providers: [EnseignantService, DialogService, SocietesService, PaysService],
   bootstrap: [AppComponent],
-  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent]
+  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent, SocieteComponent]
 })
 export class AppModule { }
