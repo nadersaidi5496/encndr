@@ -2,26 +2,70 @@
     <span>Ajouter Etudiant</span>
     <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
-      
+
 <mat-horizontal-stepper #stepper>
-    <mat-step label="information personnel">
-    <div>
-        <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
-    </div>    
+    <mat-step label="information personnel" [stepControl]="service.infoForm">
+        <form [formGroup]="service.infoForm" class="normal-form">
+            <mat-grid-list cols="2" rowHeight="300px">
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <input type="hidden" formControlName="id">
+                        <mat-form-field>
+                            <input matInput placeholder="Nom" formControlName="nom">
+                            <mat-error *ngIf="service.infoForm.controls['nom'].invalid && service.infoForm.controls['nom'].touched">
+                                verifier le nom
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Prenom" formControlName="prenom">
+                            <mat-error *ngIf="service.infoForm.controls['prenom'].invalid && service.infoForm.controls['prenom'].touched">
+                                verifier le prenom
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="N° Carte d'identité nationale" formControlName="cin">
+                            <mat-error *ngIf="service.infoForm.controls['cin'].invalid && service.infoForm.controls['cin'].touched">
+                                verifier le numero de carte d'identité nationale
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <input matInput placeholder="Email" formControlName="email">
+                            <mat-error *ngIf="service.infoForm.controls['email'].invalid && service.infoForm.controls['email'].touched">
+                                verifier l'email
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Telephone" formControlName="tlf">
+                            <mat-error *ngIf="service.infoForm.controls['tlf'].invalid && service.infoForm.controls['tlf'].touched">
+                                verifier le numero de Telephone
+                            </mat-error>
+                        </mat-form-field>
+                        <div align="right">
+                            <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
     </mat-step>
-    <mat-step label="sujet">
-      Content 2
-      <div>
-        <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
-        <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
-      </div>
+    <mat-step label="sujet et encadrant">
+        Content 2
+        <div align="right">
+            <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
+            <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
+        </div>
     </mat-step>
     <mat-step label="organisme d'acceuil">
         Content 2
         <div>
-        <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
-        <button mat-raised-button style="float : right; margin-left: 2px;" color="warn" (click)="stepper.reset()"><mat-icon>loop</mat-icon>Réinialiser</button>
-        <button mat-raised-button style="float : right;" color="primary"><mat-icon>check_circle_outline</mat-icon>Valider</button>
+            <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
+            <button mat-raised-button style="float : right; margin-left: 2px;" color="warn" (click)="stepper.reset()"><mat-icon>loop</mat-icon>Réinialiser</button>
+            <button mat-raised-button style="float : right;" color="primary"><mat-icon>check_circle_outline</mat-icon>Valider</button>
         </div>
-      </mat-step>
-  </mat-horizontal-stepper>
+    </mat-step>
+
+</mat-horizontal-stepper>

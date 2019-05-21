@@ -31,7 +31,7 @@ ngOnInit() {
   this.chargeData();
 }
 
-public chargeData(){
+public chargeData() {
    this.service.getSocietes()
   .subscribe( res => {
     this.DATA = res;
@@ -42,6 +42,7 @@ public chargeData(){
   err => console.error(err)
   );
 }
+
 
 onSearchClear() {
 this.searchKey = '';

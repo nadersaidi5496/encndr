@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+import { EtudiantService } from 'src/app/service/etudiant.service';
 
 @Component({
   selector: 'app-etudiant',
@@ -8,7 +9,8 @@ import { MatDialogRef } from '@angular/material';
 })
 export class EtudiantComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EtudiantComponent>) { }
+  constructor(public dialogRef: MatDialogRef<EtudiantComponent>,
+              private service: EtudiantService) { }
 
   ngOnInit() {
   }

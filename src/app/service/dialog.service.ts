@@ -52,7 +52,7 @@ export class DialogService {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
+    dialogConfig.width = '50%';
     dialogConfig.panelClass = 'confirm-dialog-container';
     this.dialog.open(EtudiantComponent, dialogConfig);
   }

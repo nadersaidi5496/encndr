@@ -16,8 +16,8 @@ constructor() { }
 ngOnInit() {
         this.events = [
             {
-                title: 'All Day Event',
-                start: '2019-04-24'
+                title: 'Saidi Nader',
+                start: '2019-05-24T10:00:00'
             },
             {
                 title: 'Long Event',

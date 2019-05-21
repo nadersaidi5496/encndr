@@ -1,77 +1,77 @@
 <mat-toolbar color="primary">
-  <span>{{service.myForm.controls['id'].value?"Modifier Société":"Ajouter Société"}}</span>
-  <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
+    <span>{{service.myForm.controls['id'].value?"Modifier Société":"Ajouter Société"}}</span>
+    <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
-    
-  <form [formGroup]="service.myForm" class="normal-form">
+
+<form [formGroup]="service.myForm" class="normal-form">
     <mat-grid-list cols="2" rowHeight="300px">
-      <mat-grid-tile>
-          <div class="controles-container">
-              <input type="hidden" formControlName="id">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="id">
                 <mat-form-field>
                     <input matInput placeholder="Nom" formControlName="nom">
                     <mat-error *ngIf="service.myForm.controls['nom'].invalid && service.myForm.controls['nom'].touched">
-                      verifier le nom
+                        verifier le nom
                     </mat-error>
-                  </mat-form-field>
-                
-                  <mat-form-field>
-                      <input matInput placeholder="Secteur d'activité" formControlName="secteur">
-                      <mat-error *ngIf="service.myForm.controls['secteur'].invalid && service.myForm.controls['secteur'].touched">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Secteur d'activité" formControlName="secteur">
+                    <mat-error *ngIf="service.myForm.controls['secteur'].invalid && service.myForm.controls['secteur'].touched">
                         verifier le secteur
-                      </mat-error>
-                    </mat-form-field>  
-        
-                    <mat-form-field>
-                      <input matInput placeholder="Adresse" formControlName="adresse">
-                      <mat-error *ngIf="service.myForm.controls['adresse'].invalid && service.myForm.controls['adresse'].touched">
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Adresse" formControlName="adresse">
+                    <mat-error *ngIf="service.myForm.controls['adresse'].invalid && service.myForm.controls['adresse'].touched">
                         verifier l'adresse
-                      </mat-error>
-                    </mat-form-field> 
-        
-                    <mat-form-field>
-                      <input matInput placeholder="Code Postal" formControlName="codePostale">
-                      <mat-error *ngIf="service.myForm.controls['codePostale'].invalid && service.myForm.controls['codePostale'].touched">
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Code Postal" formControlName="codePostale">
+                    <mat-error *ngIf="service.myForm.controls['codePostale'].invalid && service.myForm.controls['codePostale'].touched">
                         verifier le code postal
-                      </mat-error>
-                    </mat-form-field> 
-                </div>        
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <div class="controles-container">
-              <mat-form-field>
-                  <input matInput placeholder="Ville" formControlName="ville">
-                  <mat-error *ngIf="service.myForm.controls['ville'].invalid && service.myForm.controls['ville'].touched">
-                    verifier le Ville
-                  </mat-error>
-                </mat-form-field> 
-            
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input matInput placeholder="Ville" formControlName="ville">
+                    <mat-error *ngIf="service.myForm.controls['ville'].invalid && service.myForm.controls['ville'].touched">
+                        verifier le Ville
+                    </mat-error>
+                </mat-form-field>
+
                 <mat-form-field>
                     <input matInput placeholder="Numero de telephone" formControlName="tlf">
                     <mat-error *ngIf="service.myForm.controls['tlf'].invalid  && service.myForm.controls['tlf'].touched">
-                      le numero est incorrect
+                        le numero est incorrect
                     </mat-error>
-                  </mat-form-field>  
-            
-                  <mat-form-field>
-                      <input matInput placeholder="Email" formControlName="email">
-                      <mat-error *ngIf="service.myForm.controls['email'].invalid && service.myForm.controls['email'].touched">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="service.myForm.controls['email'].invalid && service.myForm.controls['email'].touched">
                         verifier la format de l'email
-                      </mat-error>
-                  </mat-form-field>  
-            
-                    <mat-form-field>
-                        <mat-select placeholder="Pays" formControlName="pays">
-                          <mat-option *ngFor="let pays of Pays" [value]="pays.id">
-                          {{pays.nom}}
-                          </mat-option>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select placeholder="Pays" formControlName="pays">
+                        <mat-option *ngFor="let pays of Pays" [value]="pays.id">
+                            {{pays.nom}}
+                        </mat-option>
                     </mat-select>
-                      <mat-error *ngIf="service.myForm.controls['pays'].invalid  && service.myForm.controls['pays'].touched">
-                         il faut specifier la pays
-                      </mat-error>
-                    </mat-form-field>
-                    <button mat-raised-button color="primary" type="submit" [disabled]="service.myForm.invalid" (click)="OnSubmit()">Valider</button>
+                    <mat-error *ngIf="service.myForm.controls['pays'].invalid  && service.myForm.controls['pays'].touched">
+                        il faut specifier la pays
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="service.myForm.invalid" (click)="OnSubmit()">Valider</button>
             </div>
-      </mat-grid-tile>
-    </mat-grid-list> 
-  </form>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
