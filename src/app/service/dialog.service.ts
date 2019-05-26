@@ -8,6 +8,8 @@ import { EtudiantComponent } from '../etudiants/etudiant/etudiant.component';
 import { ListEtudComponent } from '../enseignants/list-etud/list-etud.component';
 import { SocieteComponent } from '../societes/societe/societe.component';
 import { SocietesService } from './societes.service';
+import { Etudiant } from '../model/etudiant';
+import { EtudiantService } from './etudiant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,8 @@ export class DialogService {
 
   constructor(private dialog: MatDialog,
               private service: EnseignantService,
-              private _societe: SocietesService) { }
+              private _societe: SocietesService,
+              private _etd: EtudiantService) { }
 
   openConfirmeDialog(msg) {
     return this.dialog.open(MatConfirmeDeleteComponent,{
@@ -49,6 +52,16 @@ export class DialogService {
   }
 
   ajouterEtudiantDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '70%';
+    dialogConfig.panelClass = 'confirm-dialog-container';
+    return this.dialog.open(EtudiantComponent, dialogConfig);
+  }
+
+  ModifierEtudiantDialog(row: any) {
+    this._etd.setData(row);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;

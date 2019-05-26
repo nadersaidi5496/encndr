@@ -140,7 +140,7 @@ export class EtudiantComponent implements OnInit {
   }
   setSujetSociete() {
     this.sujet = new Sujetcast(
-      null,
+      this.service.sujetForm.controls['id'].value,
       this.service.sujetForm.controls['titre'].value,
       this.service.sujetForm.controls['resume'].value,
       this.service.sujetForm.controls['motCles'].value,

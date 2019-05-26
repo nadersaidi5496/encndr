@@ -4,14 +4,16 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Parcours } from '../model/parcours';
 import { Observable } from 'rxjs';
 import { Etudiant } from '../model/etudiant';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtudiantService {
 
+  encadrant : any;
   constructor(private httpClient: HttpClient,
-              private _formBuilder: FormBuilder  ) { }
+              private _formBuilder: FormBuilder) { }
 
 
               infoForm: FormGroup = this._formBuilder.group({
@@ -36,12 +38,13 @@ export class EtudiantService {
               });
 
               sujetForm: FormGroup = this._formBuilder.group({
+                id: new FormControl(null),
                 titre: new FormControl('' , Validators.required),
                 resume: new FormControl(''),
                 motCles: new FormControl(''),
                 reussiteEcrit: new FormControl('', Validators.required),
-                SessionDepot: new FormControl('', Validators.required)
-               , encadrant: new FormControl(null, Validators.required)
+                SessionDepot: new FormControl('', Validators.required),
+               encadrant: new FormControl(null, Validators.required)
               });
 
               organisationForm: FormGroup = this._formBuilder.group({
@@ -79,7 +82,34 @@ export class EtudiantService {
       return this.infoForm.get('parcours');
         }
 
-      
+        setData(etd: any){
+          this.getEncadrant(etd.cin);
+          console.log(this.encadrant);
+          this.infoForm.setValue({
+            nom : etd.nom,
+            prenom : etd.prenom,
+            tlf : etd.telephone,
+            email : etd.email,
+            cin : etd.email,
+            parcours: (etd.parcours).idParcours
+          });
+          this.sujetForm.setValue({
+            id: (etd.sujet).id,
+            titre: (etd.sujet).titre,
+            resume: (etd.sujet).resume,
+            motCles: (etd.sujet).motCles,
+            reussiteEcrit: (etd.sujet).reussiteEcrit,
+            SessionDepot: (etd.sujet).sessionDepot,
+            encadrant: this.encadrant
+          });
+          this.organisationForm.setValue({
+            societe: (etd.sujet).societe,
+            nomPrenom: (etd.sujet).nomPrenom,
+            email: (etd.sujet).email,
+            tlf : (etd.sujet).tlf
+          });
+
+        }
   InitialForm() {
     this.infoForm.reset();
     this.sujetForm.reset();
@@ -110,5 +140,9 @@ export class EtudiantService {
     return this.httpClient.put(this.apiUrl + 'etudiants/' + id, etd);
   }
 
-
+  private getEncadrant(id: number){
+    this.httpClient.get(this.apiUrl + 'assister/Encadrant/' + id ).subscribe(async res => {
+      this.encadrant = await res;
+    });
+  }
 }

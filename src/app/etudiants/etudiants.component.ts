@@ -67,6 +67,10 @@ displayedColumns = ['actions', 'CIN' , 'Nom', 'Prenom', 'Email',  'Tlf' , 'parco
       }
     });
   }
+
+  onModifier(row){
+    this.dialogService.ModifierEtudiantDialog(row);
+  }
 }
 
 
