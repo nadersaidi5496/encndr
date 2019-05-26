@@ -2,42 +2,18 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource , MatDialog , MatDialogConfig} from '@angular/material';
 import { DialogService } from '../service/dialog.service';
 import { NotificationService } from '../service/notification.service';
-export interface EtudiantsItem {
-  name: string;
-  id: number;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: EtudiantsItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
+import { EtudiantService } from '../service/etudiant.service';
+import { Etudiant } from '../model/etudiant';
 @Component({
   selector: 'app-etudiants',
   templateUrl: './etudiants.component.html',
   styleUrls: ['./etudiants.component.css']
 })
 export class EtudiantsComponent implements OnInit {
+  DATA: any[];
   constructor(private dialogService: DialogService,
-              private notif: NotificationService) {}
+              private notif: NotificationService,
+              private service: EtudiantService) {}
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -45,12 +21,24 @@ export class EtudiantsComponent implements OnInit {
   searchKey: string;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['actions' , 'id', 'name'];
+// tslint:disable-next-line: max-line-length
+displayedColumns = ['actions', 'CIN' , 'Nom', 'Prenom', 'Email',  'Tlf' , 'parcours'];
 
-  ngOnInit(){
-    this.dataSource = new MatTableDataSource(EXAMPLE_DATA);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  ngOnInit() {
+    console.log(this.DATA);
+    this.chargeData();
+  }
+
+  public chargeData(){
+    this.service.getEtudiants()
+    .subscribe(res => {
+      this.DATA = res;
+      this.dataSource = new MatTableDataSource(this.DATA);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    },
+    err => console.error(err)
+    );
   }
 
   onSearchClear() {
@@ -63,15 +51,19 @@ export class EtudiantsComponent implements OnInit {
   }
 
   onCreate() {
-    this.dialogService.ajouterEtudiantDialog();
+    this.dialogService.ajouterEtudiantDialog().afterClosed().subscribe(res => {
+      this.chargeData();
+    });
   }
 
-  onDelete() {
-    this.dialogService.openConfirmeDialog("Etes-vous sûr(e) de vouloir supprimer l'etudiant ?")
-    .afterClosed().subscribe(res =>{
+  onDelete(row: Etudiant) {
+    this.dialogService.openConfirmeDialog('Etes-vous sûr(e) de vouloir supprimer l\'etudiant ?')
+    .afterClosed().subscribe(res => {
       if (res) {
-        this.notif.success('etudiant supprimer avec succes');
-
+        this.service.deleteEtudiant(row.cin).subscribe(res =>{
+          this.notif.success('etudiant supprimer avec succes');
+          this.chargeData();
+        });
       }
     });
   }

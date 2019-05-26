@@ -1,5 +1,15 @@
 <div class="grid-container">
-    <h1 class="mat-h1">Dashboard</h1>
+    <div class="col-md-4 ml-auto">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon">Importer</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon" accept=".csv" placeholder="Choisir fichier">
+                <label class="custom-file-label" for="inputGroupFile">Choisir un fichier</label>
+            </div>
+        </div>
+    </div>
     <mat-grid-list cols="2" rowHeight="350px">
         <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
             <mat-card class="dashboard-card">

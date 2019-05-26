@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
-import { MatPaginatorModule, MatSortModule, MatInputModule, MatDialogModule, MatSnackBarModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatInputModule, MatDialogModule, MatSnackBarModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {  MatTableModule } from '@angular/material/table';
@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SocietesService } from './service/societes.service';
 import { PaysService } from './service/pays.service';
+import { AddSoutenanceComponent } from './soutenance/add-soutenance/add-soutenance.component';
 
 
 
@@ -50,7 +51,8 @@ import { PaysService } from './service/pays.service';
     ListEtudComponent,
     SoutenanceComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AddSoutenanceComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,8 @@ import { PaysService } from './service/pays.service';
     MatSnackBarModule,
     AccordionModule,
     FullCalendarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatAutocompleteModule
   ],
   providers: [EnseignantService, DialogService, SocietesService, PaysService],
   bootstrap: [AppComponent],

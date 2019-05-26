@@ -87,4 +87,5 @@ encadEtudiant(row) {
   console.log(row);
   this.dialogService.ListEtudDialog(row);
 }
+
 }

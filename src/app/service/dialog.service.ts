@@ -52,9 +52,9 @@ export class DialogService {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '50%';
+    dialogConfig.width = '70%';
     dialogConfig.panelClass = 'confirm-dialog-container';
-    this.dialog.open(EtudiantComponent, dialogConfig);
+    return this.dialog.open(EtudiantComponent, dialogConfig);
   }
 
   ListEtudDialog(row) {
@@ -62,7 +62,7 @@ export class DialogService {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '60%';
+    dialogConfig.width = '70%';
     dialogConfig.panelClass = 'confirm-dialog-container';
     this.dialog.open(ListEtudComponent, dialogConfig);
   }

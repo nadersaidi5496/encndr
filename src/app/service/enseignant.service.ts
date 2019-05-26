@@ -23,7 +23,8 @@ export class EnseignantService {
       Validators.email
     ]),
     password : new FormControl(''),
-    grade : new FormControl('', Validators.required)
+    grade : new FormControl('', Validators.required),
+    assisters : new FormControl(null)
   });
 
   apiUrl = 'http://localhost:8080/';

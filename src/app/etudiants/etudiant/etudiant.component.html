@@ -1,15 +1,13 @@
 <mat-toolbar color="primary">
-    <span>Ajouter Etudiant</span>
+    <span>{{service.infoForm.controls['cin'].value?"Modifier Etudiant":"Ajouter Etudiant"}}</span>
     <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
-
 <mat-horizontal-stepper #stepper>
     <mat-step label="information personnel" [stepControl]="service.infoForm">
         <form [formGroup]="service.infoForm" class="normal-form">
             <mat-grid-list cols="2" rowHeight="300px">
                 <mat-grid-tile>
                     <div class="controles-container">
-                        <input type="hidden" formControlName="id">
                         <mat-form-field>
                             <input matInput placeholder="Nom" formControlName="nom">
                             <mat-error *ngIf="service.infoForm.controls['nom'].invalid && service.infoForm.controls['nom'].touched">
@@ -44,28 +42,113 @@
                                 verifier le numero de Telephone
                             </mat-error>
                         </mat-form-field>
-                        <div align="right">
-                            <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
-                        </div>
+                        <mat-form-field>
+                            <mat-select placeholder="Parcours" formControlName="parcours" disableRipple>
+                                <mat-option *ngFor="let parcours of spec" [value]="parcours.idParcours">
+                                    {{parcours.nom}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="service.infoForm.controls['parcours'].invalid  && service.infoForm.controls['parcours'].touched">
+                                il faut specifier le parcours
+                            </mat-error>
+                        </mat-form-field>
                     </div>
                 </mat-grid-tile>
             </mat-grid-list>
+            <button mat-raised-button matStepperNext style="float : right;" color="primary" type="submit" [disabled]="service.infoForm.invalid">Suivant<mat-icon>navigate_next</mat-icon></button>
         </form>
     </mat-step>
-    <mat-step label="sujet et encadrant">
-        Content 2
-        <div align="right">
-            <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
-            <button mat-button matStepperNext color="primary"><mat-icon>navigate_next</mat-icon></button>
-        </div>
+    <mat-step label="sujet et encadrant" [stepControl]="service.sujetForm">
+        <form [formGroup]="service.sujetForm">
+            <mat-grid-list cols="2" rowHeight="300px">
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <input matInput placeholder="Titre" formControlName="titre">
+                            <mat-error *ngIf="service.sujetForm.controls['titre'].invalid && service.sujetForm.controls['titre'].touched">
+                                verifier le titre
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <textarea matInput placeholder="Résumé" formControlName="resume"></textarea>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Mot Clés" formControlName="motCles">
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <div class="controles-container">
+                        <mat-form-field>
+                            <input matInput placeholder="Session de reussite d'écrit" formControlName="reussiteEcrit">
+                            <mat-error *ngIf="service.sujetForm.controls['reussiteEcrit'].invalid && service.sujetForm.controls['reussiteEcrit'].touched">
+                                verifier la session de reussite d'écrit
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="Session de dépôt" formControlName="SessionDepot">
+                            <mat-error *ngIf="service.sujetForm.controls['SessionDepot'].invalid && service.sujetForm.controls['SessionDepot'].touched">
+                                verifier la session de dépôt
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Encadrant" aria-label="Encadrant" [matAutocomplete]="auto" formControlName="encadrant">
+                            <mat-autocomplete #auto="matAutocomplete" [displayWith]="getEnseignantNomPrenom">
+                                <mat-option *ngFor="let enseignant of ens" [value]="enseignant">
+                                    {{enseignant.nom}} {{enseignant.prenom}} {{enseignant.grade}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="service.sujetForm.controls['encadrant'].invalid && service.sujetForm.controls['encadrant'].touched">
+                                verifier l'encadrant
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <div align="right">
+                <button mat-raised-button matStepperNext style="float : right; margin-left: 2px;" color="primary" type="submit" [disabled]="service.sujetForm.invalid">Suivant<mat-icon>navigate_next</mat-icon></button>
+                <button mat-raised-button matStepperPrevious style="float : right;" color="primary"><mat-icon>navigate_before</mat-icon>Précédent</button>
+            </div>
+        </form>
     </mat-step>
     <mat-step label="organisme d'acceuil">
-        Content 2
-        <div>
-            <button mat-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon></button>
-            <button mat-raised-button style="float : right; margin-left: 2px;" color="warn" (click)="stepper.reset()"><mat-icon>loop</mat-icon>Réinialiser</button>
-            <button mat-raised-button style="float : right;" color="primary"><mat-icon>check_circle_outline</mat-icon>Valider</button>
-        </div>
+        <form [formGroup]="service.organisationForm">
+            <div class="controles-container">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Organisme d'acceuil" aria-label="Organisme d'acceuil" [matAutocomplete]="auto1" formControlName="societe">
+                    <mat-autocomplete #auto1="matAutocomplete" [displayWith]="getNomSociete">
+                        <mat-option *ngFor="let societe of societes" [value]="societe">
+                            {{societe.nom}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="service.organisationForm.controls['societe'].invalid && service.organisationForm.controls['societe'].touched">
+                        verifier l'organisme d'acceuil
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Nom et prenom de l'encadrant technique" formControlName="nomPrenom">
+                    <mat-error *ngIf="service.organisationForm.controls['nomPrenom'].invalid && service.organisationForm.controls['nomPrenom'].touched">
+                        verifier le nom et le prenom de l'encadrant
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="service.organisationForm.controls['email'].invalid && service.organisationForm.controls['email'].touched">
+                        verifier l'email de l'encadrant
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="N° Telephone" formControlName="tlf">
+                    <mat-error *ngIf="service.organisationForm.controls['tlf'].invalid && service.organisationForm.controls['tlf'].touched">
+                        verifier le numéro de telephone
+                    </mat-error>
+                </mat-form-field>
+                <div>
+                    <button mat-raised-button matStepperPrevious color="primary"><mat-icon>navigate_before</mat-icon>Précédent</button>
+                    <button mat-raised-button style="float : right; margin-left: 2px;" color="warn" (click)="stepper.reset()"><mat-icon>loop</mat-icon>Réinialiser</button>
+                    <button mat-raised-button style="float : right;" color="primary" type="submit" (click)="OnSubmit()" [disabled]="service.organisationForm.invalid && service.infoForm.invalid && service.sujetForm.invalid"><mat-icon>check_circle_outline</mat-icon>Valider</button>
+                </div>
+            </div>
+        </form>
     </mat-step>
-
 </mat-horizontal-stepper>

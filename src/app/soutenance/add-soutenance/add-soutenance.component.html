@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+    <span>{{service.myForm.controls['id'].value?"Modifier Enseignant":"Ajouter Enseignant"}}</span>
+    <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
+</mat-toolbar>
+
+<form [formGroup]="service.myForm" class="normal-form">
+    <div class="controles-container">
+        <input type="hidden" formControlName="id">
+        <mat-form-field>
+            <input matInput placeholder="CIN" formControlName="cin">
+            <mat-error *ngIf="myForm.controls['cin'].invalid && myForm.controls['nom'].touched">
+                verifier le CIN
+            </mat-error>
+        </mat-form-field>
+
+
+
+        <input type="hidden" formControlName="etudiants">
+        <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid" (click)="OnSubmit()">Valider</button>
+    </div>
+</form>

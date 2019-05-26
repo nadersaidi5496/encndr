@@ -1,8 +1,9 @@
-.calander-zone{
+.calander-zone {
     /* width: 80%;
     margin-top: 2% ;
     margin-left: 8%;
     position: center; */
     margin: 0 auto;
-    max-width: 900px;
-  }
+    max-width: 800px;
+    margin-top: 2%;
+}

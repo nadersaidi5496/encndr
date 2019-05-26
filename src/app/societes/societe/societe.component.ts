@@ -26,9 +26,9 @@ export class SocieteComponent implements OnInit {
     this.chargePays();
   }
 
-  chargePays() {
-    this._Pays.getPays().subscribe(res =>{
-      this.Pays = res;
+  async chargePays() {
+    await this._Pays.getPays().subscribe(async res =>{
+      this.Pays = await res;
     });
   }
 

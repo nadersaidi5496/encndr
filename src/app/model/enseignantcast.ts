@@ -1,10 +1,6 @@
-import { Etudiant } from './etudiant';
-import { Assister } from './assiter';
-
-export class Enseignant {
+export class Enseignantcast {
     id: number;
     nom: string;
-    assisters: any;
     prenom: string;
     tlf: string;
     email: string;

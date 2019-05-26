@@ -1,71 +1,66 @@
 <mat-toolbar color="primary">
-    <span>les etudiants associer à {{service.myForm.controls['Nom'].value}} {{service.myForm.controls['Prenom'].value}}</span>
+    <span>les etudiants associer à {{service.myForm.controls['nom'].value}} {{service.myForm.controls['prenom'].value}}</span>
     <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
-  <div class="search-div">
-    <mat-select placeholder="Type de master">
-          <mat-option><button mat-button (click)="onSearchClear()">aucun</button></mat-option>
-          <mat-option><button mat-button (click)="applyFilter('Recherche')">Recherche</button></mat-option>
-          <mat-option><button mat-button (click)="applyFilter('Professionnel')">Professionnel</button></mat-option>
-    </mat-select>
-    <mat-form-field class="search-form-field">  
-      <input matInput [(ngModel)]="searchKey" placeholder="Recherche" autocomplete="off" (keyup)="applyFilter('')">
-         <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+<div class="search-div">
+    <mat-form-field class="search-form-field">
+        <input matInput [(ngModel)]="searchKey" placeholder="Recherche" autocomplete="off" (keyup)="applyFilter('')">
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
          <mat-icon>close</mat-icon>
          </button>
-      </mat-form-field>
-    </div>
+    </mat-form-field>
+</div>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" aria-label="Elements" matSort>
-     
-      <!-- Nom Column -->
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom et Prenom</th>
-        <td mat-cell *matCellDef="let row" >{{row.fullName}}</td>
-      </ng-container>     
-      <!-- CIN Column -->
-      <ng-container matColumnDef="CIN">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>CIN</th>
-        <td mat-cell *matCellDef="let row" >{{row.CIN}}</td>
-      </ng-container>
-      <!-- tlf Column -->
-      <ng-container matColumnDef="Tlf">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Telephone</th>
-          <td mat-cell *matCellDef="let row" >{{row.Tlf}}</td>
-        </ng-container>  
-      <!-- email Column -->
-      <ng-container matColumnDef="Email">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-          <td mat-cell *matCellDef="let row" >{{row.Email}}</td>
-        </ng-container>     
-      <!-- Sujet Column -->
-      <ng-container matColumnDef="Sujet">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sujet</th>
-          <td mat-cell *matCellDef="let row" >{{row.Sujet}}</td>
-        </ng-container>             
-      <!-- Loading -->
-      <ng-container matColumnDef="loading">
-          <mat-footer-cell *matFooterCellDef colspan="6">
-            chargement de donnée ...
-          </mat-footer-cell>
-      </ng-container>
-      <!-- no Data -->
-      <ng-container matColumnDef="noData">
-          <mat-footer-cell *matFooterCellDef colspan="6" position="center">
-            aucun Etudiant
-          </mat-footer-cell>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
-      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
+
+        <!-- Nom Column -->
+        <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom et Prenom</th>
+            <td mat-cell *matCellDef="let row">{{row.etudiant.nom}} {{row.etudiant.prenom}}</td>
+        </ng-container>
+        <!-- CIN Column -->
+        <ng-container matColumnDef="CIN">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>CIN</th>
+            <td mat-cell *matCellDef="let row">{{row.etudiant.cin}}</td>
+        </ng-container>
+        <!-- tlf Column -->
+        <ng-container matColumnDef="Tlf">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>N° Telephone</th>
+            <td mat-cell *matCellDef="let row">{{row.etudiant.telephone}}</td>
+        </ng-container>
+        <!-- email Column -->
+        <ng-container matColumnDef="Email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let row">{{row.etudiant.email}}</td>
+        </ng-container>
+        <!-- Sujet Column -->
+        <ng-container matColumnDef="Sujet">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Sujet</th>
+            <td mat-cell *matCellDef="let row">{{row.etudiant.sujet.titre}}</td>
+        </ng-container>
+        <!-- position -->
+        <ng-container matColumnDef="Position">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+            <td mat-cell *matCellDef="let row">{{row.position}}</td>
+        </ng-container>
+        <!-- Loading -->
+        <ng-container matColumnDef="loading">
+            <mat-footer-cell *matFooterCellDef colspan="6">
+                chargement de donnée ...
+            </mat-footer-cell>
+        </ng-container>
+        <!-- no Data -->
+        <ng-container matColumnDef="noData">
+            <mat-footer-cell *matFooterCellDef colspan="6" position="center">
+                aucun Etudiant
+            </mat-footer-cell>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':!(dataSource!=null && dataSource.data.length==0)}"></mat-footer-row>
     </table>
-    
-    <mat-paginator #paginator
-        [length]="dataSource.data.length"
-        [pageIndex]="0"
-        [pageSize]="50"
-        [pageSizeOptions]="[10 , 25 ,50 , 100]">
+
+    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="50" [pageSizeOptions]="[10 , 25 ,50 , 100]">
     </mat-paginator>
-    </div>
-    
+</div>
