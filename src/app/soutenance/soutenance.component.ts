@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { DialogService } from '../service/dialog.service';
+import { EtudiantService } from '../service/etudiant.service';
+import { Etudiant } from '../model/etudiant';
+export interface EventData{
+    title: string;
+    start: string;
+}
 @Component({
   selector: 'app-soutenance',
   templateUrl: './soutenance.component.html',
@@ -9,8 +16,10 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 export class SoutenanceComponent implements OnInit {
 
   events: any[];
+  etudiants: Etudiant[];
   calendarPlugins = [dayGridPlugin, timeGridPlugin];
-constructor() { }
+constructor(private dialog: DialogService,
+            private service: EtudiantService) {}
 
 
 ngOnInit() {
@@ -39,10 +48,15 @@ ngOnInit() {
             }
         ];
     }
-handleDateClick(arg) { // handler method
-        alert(arg.dateStr);
+handleDateClick() { // handler method
+        console.log('jkfshdfjkshdf');
+        
       }
+      
 
+      onCreate() {
+          this.dialog.AjouterSoutenance();
+      }
 
 
 }

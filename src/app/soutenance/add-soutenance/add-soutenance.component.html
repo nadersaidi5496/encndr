@@ -1,21 +1,57 @@
 <mat-toolbar color="primary">
-    <span>{{service.myForm.controls['id'].value?"Modifier Enseignant":"Ajouter Enseignant"}}</span>
+    <span>Ajouter Soutenance</span>
     <mat-icon id="close-icon" (click)="CloseDialog()">close</mat-icon>
 </mat-toolbar>
 
-<form [formGroup]="service.myForm" class="normal-form">
+<form [formGroup]="_etd.SoutenanceForm" class="normal-form">
     <div class="controles-container">
-        <input type="hidden" formControlName="id">
-        <mat-form-field>
-            <input matInput placeholder="CIN" formControlName="cin">
-            <mat-error *ngIf="myForm.controls['cin'].invalid && myForm.controls['nom'].touched">
-                verifier le CIN
+        <!-- etudiant -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Etudiant" aria-label="Etudiant" [matAutocomplete]="auto2" formControlName="etudiant">
+            <mat-autocomplete #auto2="matAutocomplete" [displayWith]="getEtudiantinfo">
+                <mat-option *ngFor="let etudiant of etds" [value]="etudiant">
+                    {{etudiant.cin}} : {{etudiant.nom}} {{etudiant.prenom}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="_etd.SoutenanceForm.controls['etudiant'].invalid && _etd.SoutenanceForm.controls['etudiant'].touched">
+                verifier l'etudiant
+            </mat-error>
+        </mat-form-field>
+        <!-- Date Soutenance -->
+        <!-- <mat-form-field> -->
+        <input type="date" formControlName="dateSoutenance" placeholder="Choisir une date">
+        <!-- <input matInput [matDatepicker]="picker" [min]="minDate" placeholder="Choisir une date" formControlName="dateSoutenance">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> -->
+        <!-- </mat-form-field> -->
+        <!-- PresidentDuJury -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="President Du Jury" aria-label="President Du Jury" [matAutocomplete]="auto" formControlName="PresidentDuJury">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="getEnseignantNomPrenom">
+                <mat-option *ngFor="let enseignant of enss" [value]="enseignant">
+                    {{enseignant.nom}} {{enseignant.prenom}} {{enseignant.grade}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="_etd.SoutenanceForm.controls['PresidentDuJury'].invalid && _etd.SoutenanceForm.controls['PresidentDuJury'].touched">
+                verifier le president du jury
+            </mat-error>
+        </mat-form-field>
+        <!-- Rappoteur -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Rapporteur" aria-label="Rapporteur" [matAutocomplete]="auto1" formControlName="rapporteur">
+            <mat-autocomplete #auto1="matAutocomplete" [displayWith]="getEnseignantNomPrenom">
+                <mat-option *ngFor="let enseignant of enss" [value]="enseignant">
+                    {{enseignant.nom}} {{enseignant.prenom}} {{enseignant.grade}}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="_etd.SoutenanceForm.controls['rapporteur'].invalid && _etd.SoutenanceForm.controls['rapporteur'].touched">
+                verifier le rapporteur.
             </mat-error>
         </mat-form-field>
 
 
 
         <input type="hidden" formControlName="etudiants">
-        <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid" (click)="OnSubmit()">Valider</button>
+        <button mat-raised-button color="primary" type="submit" (click)="OnSubmit()">Valider</button>
     </div>
 </form>

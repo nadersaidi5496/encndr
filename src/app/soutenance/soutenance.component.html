@@ -1,6 +1,6 @@
 <div class="col-md-3 ml-auto">
-    <button mat-raised-button>Ajouter soutenance</button>
+    <button mat-raised-button (click)="onCreate()">Ajouter soutenance</button>
 </div>
 <div class="calander-zone">
-    <full-calendar defaultView="dayGridMonth" (dateClick)="handleDateClick($event)" [plugins]="calendarPlugins" [weekends]="false" [events]="events" [locale]="fr"></full-calendar>
+    <full-calendar defaultView="dayGridMonth" (dayClick)="handleDateClick()" [plugins]="calendarPlugins" [weekends]="false" [events]="events" [locale]="fr"></full-calendar>
 </div>

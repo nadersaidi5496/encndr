@@ -10,6 +10,8 @@ import { SocieteComponent } from '../societes/societe/societe.component';
 import { SocietesService } from './societes.service';
 import { Etudiant } from '../model/etudiant';
 import { EtudiantService } from './etudiant.service';
+import { AddSoutenanceComponent } from '../soutenance/add-soutenance/add-soutenance.component';
+import { ModifierEtudiantComponent } from '../etudiants/modifier-etudiant/modifier-etudiant.component';
 
 @Injectable({
   providedIn: 'root'
@@ -67,7 +69,7 @@ export class DialogService {
     dialogConfig.autoFocus = true;
     dialogConfig.width = '70%';
     dialogConfig.panelClass = 'confirm-dialog-container';
-    return this.dialog.open(EtudiantComponent, dialogConfig);
+    return this.dialog.open(ModifierEtudiantComponent, dialogConfig);
   }
 
   ListEtudDialog(row) {
@@ -106,6 +108,13 @@ export class DialogService {
     dialogConfig.width = '60%';
     return this.dialog.open(SocieteComponent, dialogConfig);
 
+  }
+  AjouterSoutenance() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '40%';
+    return this.dialog.open(AddSoutenanceComponent, dialogConfig);
   }
 
 

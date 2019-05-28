@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
-import { MatPaginatorModule, MatSortModule, MatInputModule, MatDialogModule, MatSnackBarModule, MatAutocomplete, MatAutocompleteModule } from '@angular/material';
+import { MatPaginatorModule, MatSortModule, MatInputModule, MatDialogModule, MatSnackBarModule, MatAutocomplete, MatAutocompleteModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule, MatMenuModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {  MatTableModule } from '@angular/material/table';
@@ -33,6 +33,7 @@ import { HomeComponent } from './home/home.component';
 import { SocietesService } from './service/societes.service';
 import { PaysService } from './service/pays.service';
 import { AddSoutenanceComponent } from './soutenance/add-soutenance/add-soutenance.component';
+import { ModifierEtudiantComponent } from './etudiants/modifier-etudiant/modifier-etudiant.component';
 
 
 
@@ -52,7 +53,8 @@ import { AddSoutenanceComponent } from './soutenance/add-soutenance/add-soutenan
     SoutenanceComponent,
     LoginComponent,
     HomeComponent,
-    AddSoutenanceComponent
+    AddSoutenanceComponent,
+    ModifierEtudiantComponent
   ],
   imports: [
     BrowserModule,
@@ -81,10 +83,13 @@ import { AddSoutenanceComponent } from './soutenance/add-soutenance/add-soutenan
     AccordionModule,
     FullCalendarModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [EnseignantService, DialogService, SocietesService, PaysService],
   bootstrap: [AppComponent],
-  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent, SocieteComponent]
+  entryComponents: [EtudiantComponent, MatConfirmeDeleteComponent, EnseignantComponent, ListEtudComponent,
+                    SocieteComponent, AddSoutenanceComponent, ModifierEtudiantComponent]
 })
 export class AppModule { }

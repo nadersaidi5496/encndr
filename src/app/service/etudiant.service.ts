@@ -57,6 +57,13 @@ export class EtudiantService {
                   Validators.pattern('[1-9]+[0-9]*')
                 ])
               });
+
+              SoutenanceForm: FormGroup = this._formBuilder.group({
+                etudiant: new FormControl(null, Validators.required),
+                dateSoutenance: new FormControl(null, Validators.required),
+                PresidentDuJury: new FormControl(null, Validators.required),
+                rapporteur: new FormControl(null, Validators.required)
+              });
               apiUrl = 'http://localhost:8080/';
 
     // getters and setters for form
@@ -90,7 +97,7 @@ export class EtudiantService {
             prenom : etd.prenom,
             tlf : etd.telephone,
             email : etd.email,
-            cin : etd.email,
+            cin : etd.cin,
             parcours: (etd.parcours).idParcours
           });
           this.sujetForm.setValue({
@@ -128,6 +135,9 @@ export class EtudiantService {
     return this.httpClient.get<any[]>(this.apiUrl + 'etudiants');
   }
 
+  public getEtudiantById(cin: string){
+    return this.httpClient.get<any>(this.apiUrl + 'etudiants/' + cin);
+  }
   public addEtudiant(etd: Etudiant) {
     return this.httpClient.post(this.apiUrl + 'etudiants', etd);
   }
@@ -141,8 +151,8 @@ export class EtudiantService {
   }
 
   private getEncadrant(id: number){
-    this.httpClient.get(this.apiUrl + 'assister/Encadrant/' + id ).subscribe(async res => {
-      this.encadrant = await res;
+    this.httpClient.get(this.apiUrl + 'assister/Encadrant/' + id ).subscribe( res => {
+      this.encadrant = res;
     });
   }
 }
