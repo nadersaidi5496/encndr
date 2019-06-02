@@ -12,6 +12,7 @@ import { async } from '@angular/core/testing';
 export class EtudiantService {
 
   encadrant : any;
+  etudiants: any[];
   constructor(private httpClient: HttpClient,
               private _formBuilder: FormBuilder) { }
 
@@ -155,4 +156,13 @@ export class EtudiantService {
       this.encadrant = res;
     });
   }
+
+  chargerEtudiant(): any[] {
+    this.getEtudiants().subscribe(async res =>{
+      console.log(res);
+      
+        this.etudiants = await res;
+    });
+    return this.etudiants;
+}
 }

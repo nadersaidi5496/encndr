@@ -34,6 +34,7 @@ import { SocietesService } from './service/societes.service';
 import { PaysService } from './service/pays.service';
 import { AddSoutenanceComponent } from './soutenance/add-soutenance/add-soutenance.component';
 import { ModifierEtudiantComponent } from './etudiants/modifier-etudiant/modifier-etudiant.component';
+import { SoutenanceAfficherComponent } from './soutenance/soutenance-afficher/soutenance-afficher.component';
 
 
 
@@ -54,7 +55,8 @@ import { ModifierEtudiantComponent } from './etudiants/modifier-etudiant/modifie
     LoginComponent,
     HomeComponent,
     AddSoutenanceComponent,
-    ModifierEtudiantComponent
+    ModifierEtudiantComponent,
+    SoutenanceAfficherComponent
   ],
   imports: [
     BrowserModule,

@@ -4,10 +4,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { DialogService } from '../service/dialog.service';
 import { EtudiantService } from '../service/etudiant.service';
 import { Etudiant } from '../model/etudiant';
-export interface EventData{
-    title: string;
-    start: string;
-}
 @Component({
   selector: 'app-soutenance',
   templateUrl: './soutenance.component.html',
@@ -15,47 +11,50 @@ export interface EventData{
 })
 export class SoutenanceComponent implements OnInit {
 
-  events: any[];
-  etudiants: Etudiant[];
+  events: any[]= [];
+  etudiants: any[];
   calendarPlugins = [dayGridPlugin, timeGridPlugin];
 constructor(private dialog: DialogService,
-            private service: EtudiantService) {}
-
+            private service: EtudiantService) {
+  
+            }
 
 ngOnInit() {
-        this.events = [
-            {
-                title: 'Saidi Nader',
-                start: '2019-05-24T10:00:00'
-            },
-            {
-                title: 'Long Event',
-                start: '2016-01-07',
-                end: '2016-01-10'
-            },
-            {
-                title: 'Repeating Event',
-                start: '2016-01-09T16:00:00'
-            },
-            {
-                title: 'Repeating Event',
-                start: '2016-01-16T16:00:00'
-            },
-            {
-                title: 'Conference',
-                start: '2016-01-11',
-                end: '2016-01-13'
-            }
-        ];
+    this.chargerEtudiant();
+    this.ChargerEvents();
     }
 handleDateClick() { // handler method
-        console.log('jkfshdfjkshdf');
-        
       }
-      
+chargerEtudiant() {
+    this.service.getEtudiants().subscribe(res =>{
+        this.etudiants = res;
+        for (let etd of res) {
+            if (etd.dateSoutenance != null) {
+                console.log(this.events);
+                
+                this.events.push({'titre': etd.nom + etd.prenom, 'start': etd.dateStoutenance});
+            }
+        }
+        console.log(this.etudiants);
+    });
+
+    
+}
+
+ChargerEvents() {
+    console.log(this.etudiants);
+    for (let etd of this.etudiants) {
+        if (etd.dateSoutenance != null) {
+            this.events.push({'titre': etd.nom + etd.prenom, 'start': etd.dateStoutenance});
+        }
+    }
+}
+
 
       onCreate() {
-          this.dialog.AjouterSoutenance();
+           this.dialog.AjouterSoutenance().afterClosed().subscribe(res =>{
+               this.chargerEtudiant();
+           });
       }
 
 

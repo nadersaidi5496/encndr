@@ -2,5 +2,5 @@
     <button mat-raised-button (click)="onCreate()">Ajouter soutenance</button>
 </div>
 <div class="calander-zone">
-    <full-calendar defaultView="dayGridMonth" (dayClick)="handleDateClick()" [plugins]="calendarPlugins" [weekends]="false" [events]="events" [locale]="fr"></full-calendar>
+    <full-calendar defaultView="dayGridMonth" (eventClick)="handleDateClick()" [plugins]="calendarPlugins" [weekends]="false" [events]="events" [locale]="fr"></full-calendar>
 </div>
